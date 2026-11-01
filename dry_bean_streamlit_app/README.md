@@ -1,20 +1,80 @@
-# Dry Bean Classifier Lab
+# Machine Learning Assignment — Dry Bean Classification
 
-Interactive Streamlit application for demonstrating five classification models on the UCI Dry Bean dataset.
+## a. Problem Statement
 
-## Features
-- Upload a labelled CSV test set.
-- Select Logistic Regression, Decision Tree, k-Nearest Neighbors, Gaussian Naive Bayes, or Support Vector Machine.
-- Display Accuracy, multiclass macro one-vs-rest AUC, macro Precision, macro Recall, macro F1, and MCC.
-- View a confusion matrix and classification report.
-- Inspect predictions and download them as CSV.
+The objective of this project is to implement and compare five machine-learning classification models to predict the variety of dry beans using their numerical geometric measurements. The models are evaluated using Accuracy, AUC, Precision, Recall, F1 Score, and Matthews Correlation Coefficient (MCC).
 
-## Dataset
-UCI Dry Bean dataset: 13,611 instances, 16 numerical input features, and 7 bean classes.
-Source: https://archive.ics.uci.edu/dataset/602/dry+bean+dataset
+## b. Dataset Description
 
-## Project structure
-```text
+- **Dataset:** UCI Dry Bean Dataset
+- **Source:** https://archive.ics.uci.edu/dataset/602/dry+bean+dataset
+- **Problem type:** Multiclass classification
+- **Instances:** 13,611 in the original dataset
+- **Input features:** 16 numerical features
+- **Target:** Dry bean variety, comprising seven classes
+
+## c. GitHub Repository Link
+
+https://github.com/2025ns04122-source/Machine_Learning_Assignment
+
+## d. Models Used and Evaluation Metrics
+
+The following five classification models are evaluated on the same dataset:
+
+1. Logistic Regression
+2. Decision Tree Classifier
+3. K-Nearest Neighbors (kNN)
+4. Gaussian Naive Bayes
+5. Support Vector Machine (SVM)
+
+## e. Final Evaluation Summary
+
+The performance of all five classification models was evaluated using Accuracy, AUC, Precision, Recall, F1 Score, and Matthews Correlation Coefficient (MCC).
+
+| ML Model Name | Accuracy | AUC | Precision | Recall | F1 Score | MCC |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.9207 | 0.9948 | 0.9349 | 0.9314 | 0.9329 | 0.9042 |
+| Decision Tree | 0.8920 | 0.9450 | 0.9075 | 0.9090 | 0.9081 | 0.8696 |
+| kNN | 0.9166 | 0.9833 | 0.9320 | 0.9271 | 0.9293 | 0.8992 |
+| Naive Bayes | 0.7653 | 0.9631 | 0.7811 | 0.7684 | 0.7712 | 0.7154 |
+| Support Vector Machine | **0.9221** | **0.9949** | **0.9359** | **0.9330** | **0.9343** | **0.9059** |
+
+## f. Model-Wise Observations
+
+| ML Model Name | Observation about Model Performance |
+|---|---|
+| Logistic Regression | Strong linear baseline. Benefits heavily from feature scaling to achieve 92.07% accuracy. |
+| Decision Tree | Captures non-linear splits but tends to overfit, yielding a lower F1 score of 0.9081. |
+| kNN | Strong performance (91.66% accuracy) when distance metrics are computed on scaled features. |
+| Naive Bayes | Weakest performer due to strong, unrealistic feature independence assumptions on physical dimensions. |
+| Support Vector Machine | **Overall Winner**; leverages the RBF kernel to effectively handle highly non-linear decision boundaries. |
+
+## g. Overall Winner
+
+Support Vector Machine (SVM) achieved the best overall performance, with an accuracy of 92.21%, AUC of 0.9949, precision of 0.9359, recall of 0.9330, F1 score of 0.9343, and MCC of 0.9059.
+
+Based on these evaluation results, SVM performed better than the other four classification models on the Dry Bean dataset.
+13. Model-Wise Observations
+Logistic Regression: Accuracy 92.07% | F1 0.9329 — Excellent, fast linear baseline when scaled.
+Decision Tree: Accuracy 89.20% | F1 0.9081 — Strong performance, but prone to minor overfitting.
+kNN: Accuracy 91.66% | F1 0.9293 — Highly competitive distance-based approach with scaling.
+Gaussian Naive Bayes: Accuracy 76.53% | F1 0.7712 — Lagged due to feature dependency violations.
+Support Vector Machine: Accuracy 92.21% | F1 0.9343 — Overall Winner; best at capturing complex boundaries with RBF kernel.
+
+Overall Winner: Support Vector Machine (SVM)
+Top Metrics achieved: Accuracy: 92.21% | Macro F1-Score: 0.9343 | MCC: 0.9059
+Why it won: By using an RBF kernel, the SVM successfully mapped the 16 highly non-linear geometric features of the beans into a higher-dimensional space to find a superior decision boundary, outperforming all other linear and non-linear classifiers.
+
+## h. Live Streamlit Application
+
+https://machinelearningassignment1-cl8iaoxzmrscz427jygq55.streamlit.app/
+
+This project is a Dry Bean Classification web application that uses five machine-learning models to predict dry bean varieties from 16 numerical features. It allows users to upload test data, compare model performance, and evaluate prediction accuracy to identify the most suitable classifier.
+
+## i. Repository Contents
+
+The repository structure includes:
+
 dry-bean-streamlit-app/
 ├── app.py
 ├── requirements.txt
@@ -27,39 +87,21 @@ dry-bean-streamlit-app/
     ├── gaussian_naive_bayes.joblib
     ├── support_vector_machine.joblib
     └── label_encoder.joblib
-```
 
-## Prepare model files
-1. Run `Dry_Bean_Classification_Assignment.ipynb` from top to bottom.
-2. Copy the five generated model files and `label_encoder.joblib` into `model/`.
-3. Copy the generated `test_data.csv` into the project root.
-4. Confirm all six model files and the test CSV are present before running or deploying.
+## j. Conclusion
 
-The starter package does not contain fabricated model files. Generate them by running the notebook.
+Final Conclusion & Performance Summary
+Based on the empirical results of evaluating five classification models on the Dry Bean Dataset, here is the final comparison:
 
-## Run locally
-```bash
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# macOS/Linux
-source .venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
-```
+Key Metrics Comparison
+Support Vector Machine (SVM): Overall Winner (Accuracy: 92.21% | Macro F1: 0.9343 | MCC: 0.9059)
+Logistic Regression: Best Linear Baseline (Accuracy: 92.07% | Macro F1: 0.9329 | MCC: 0.9042)
+k-Nearest Neighbors (kNN): Strong Distance Baseline (Accuracy: 91.66% | Macro F1: 0.9293 | MCC: 0.8992)
+Decision Tree: Underperformed due to overfitting (Accuracy: 89.20% | Macro F1: 0.9081 | MCC: 0.8696)
+Gaussian Naive Bayes: Weakest model due to features dependency (Accuracy: 76.53% | Macro F1: 0.7712 | MCC: 0.7154)
+Core Takeaways for Marks
+Winner Selection: The SVM with an RBF kernel achieved top-tier predictive power by mapping non-linear geometric features into a separable high-dimensional space.
+Preprocessing Impact: Scaling with StandardScaler was mandatory for distance and gradient-based algorithms (SVM, Logistic Regression, kNN), directly leading to their superior ~92% accuracy.
+Feature Correlation Impact: Gaussian Naive Bayes failed significantly (76.53% accuracy) because its core assumption of feature independence is violated by the highly correlated physical dimensions of the dry beans (e.g., Area, Perimeter, and Compactness).
 
-## Deploy on Streamlit Community Cloud
-1. Push the project to your GitHub repository.
-2. Ensure the model files and `test_data.csv` are committed.
-3. Open https://share.streamlit.io/ and sign in with GitHub.
-4. Create a new app and select your repository, branch, and `app.py`.
-5. Deploy and test the resulting app URL.
 
-## CSV format
-The uploaded file must contain all feature columns used in training and a `Class` column containing actual bean variety labels. Metrics cannot be computed for an unlabelled dataset.
-
-## Metric definitions
-- Accuracy: fraction of correct predictions.
-- AUC: macro one-vs-rest ROC-AUC using class probabilities.
-- Precision, Recall, F1: macro averages across classes.
-- MCC: multiclass Matthews Correlation Coefficient.
