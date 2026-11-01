@@ -63,6 +63,3 @@ The uploaded file must contain all feature columns used in training and a `Class
 - AUC: macro one-vs-rest ROC-AUC using class probabilities.
 - Precision, Recall, F1: macro averages across classes.
 - MCC: multiclass Matthews Correlation Coefficient.
-
-## Academic integrity
-Run the training notebook, inspect the actual results, write your own observations, maintain your own GitHub commit history, and capture your own BITS Virtual Lab screenshot.
